@@ -22,6 +22,7 @@ class Api::ParamerinoController < ApplicationController
     @name = params["name"]
     render 'segment_param.json.jb'
   end
+  
   def url_segment_number_guess
     @number = 36
     @guess = params["guess"]
@@ -33,5 +34,20 @@ class Api::ParamerinoController < ApplicationController
       @guess = "That's it!"  
     end
     render 'segment_url_number_guess.json.jb'
+  end
+
+  def body_param_action
+    @guess = params[:guess]
+    @number = 36
+    @guess = params[:guess]
+    if params[:guess].to_i < @number
+      @guess = "Too low."
+    elsif params[:guess].to_i > @number
+      @guess = "Too high."
+    else
+      @guess = "That's it!"  
+    end
+    render 'body.json.jb'
+  # end
   end
 end
